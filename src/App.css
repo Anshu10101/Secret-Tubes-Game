@@ -1,0 +1,93 @@
+/* landing-page */
+
+.game-container {
+  background-image: url('/background.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Add this to make absolute positioning work */
+}
+
+.help-button {
+  width: 5%;
+  height: 10%; /* Changed from fixed height to maintain aspect ratio */
+  min-width: 40px; /* Ensure button isn't too small on larger screens */
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  position: absolute;
+  bottom: 20px; /* Increased slightly for better visibility */
+  left:590px; /* Increased slightly for better visibility */
+  z-index: 10; /* Add this to ensure button appears above other elements */
+}
+
+.help-button:hover {
+  transform: scale(1.1);
+}
+
+.settings-button {
+  width: 5%;
+  height: 10%; /* Changed from fixed height to maintain aspect ratio */
+  min-width: 40px; /* Ensure button isn't too small on larger screens */
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  position: absolute;
+  bottom: 20px; /* Increased slightly for better visibility */
+  right:590px; /* Increased slightly for better visibility */
+  z-index: 10; /* Add this to ensure button appears above other elements */
+}
+
+.settings-button:hover {
+  transform: scale(1.1);
+}
+
+.play-button {
+  width: 15%;
+  height: 12%; /* Changed from fixed height to maintain aspect ratio */
+  min-width: 40px; /* Ensure button isn't too small on larger screens */
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  position: absolute;
+  bottom: 250px; /* Increased slightly for better visibility */
+  right:630px; /* Increased slightly for better visibility */
+  z-index: 10; /* Add this to ensure button appears above other elements */
+}
+
+.play-button:hover {
+  transform: scale(1.1);
+}
+
+/* help-page load after help button click */
+.help-container {
+  background-image: url('/help-page.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Add this to make absolute positioning work */
+}
+
+.push-button {
+  width: 10%;
+  height: 8%; /* Changed from fixed height to maintain aspect ratio */
+  min-width: 40px; /* Ensure button isn't too small on larger screens */
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  position: absolute;
+  bottom: 420px; /* Increased slightly for better visibility */
+  right:680px; /* Increased slightly for better visibility */
+  z-index: 10; /* Add this to ensure button appears above other elements */
+
+}
+
+.push-button:hover {
+  transform: scale(1.1);
+}
