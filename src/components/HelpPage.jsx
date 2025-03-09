@@ -12,6 +12,12 @@ function HelpPage() {
         className="push-button"
         onClick={() => alert("You got it, you pushed the button!")}
       />
+      <img
+        src="/start-btn.png"
+        alt="Play"
+        className="start-btn"
+        onClick={() => alert("You got it, you pushed the button!")}
+      />
       
     </div>
   );

@@ -46,14 +46,14 @@
 }
 
 .play-button {
-  width: 15%;
-  height: 12%; /* Changed from fixed height to maintain aspect ratio */
+  width: 12%;
+  height: 11%; /* Changed from fixed height to maintain aspect ratio */
   min-width: 40px; /* Ensure button isn't too small on larger screens */
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
   position: absolute;
   bottom: 250px; /* Increased slightly for better visibility */
-  right:630px; /* Increased slightly for better visibility */
+  right:660px; /* Increased slightly for better visibility */
   z-index: 10; /* Add this to ensure button appears above other elements */
 }
 
@@ -89,5 +89,20 @@
 }
 
 .push-button:hover {
+  transform: scale(1.1);
+}
+
+.start-btn{
+  width: 12%;
+  height: 11%; /* Changed from fixed height to maintain aspect ratio */
+  min-width: 40px; /* Ensure button isn't too small on larger screens */
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  position: absolute;
+  bottom: 120px; /* Increased slightly for better visibility */
+  right:660px; /* Increased slightly for better visibility */
+  z-index: 10; /* Add this to ensure button appears above other elements */
+}
+.start-btn:hover {
   transform: scale(1.1);
 }
