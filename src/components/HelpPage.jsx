@@ -1,8 +1,8 @@
 import "../App.css";
-
+import { useNavigate } from "react-router-dom";
 
 function HelpPage() {
-  
+  const navigate = useNavigate();
 
   return (
     <div className="help-container">
@@ -16,7 +16,7 @@ function HelpPage() {
         src="/start-btn.png"
         alt="Play"
         className="start-btn"
-        onClick={() => alert("You got it, you pushed the button!")}
+        onClick={() => navigate("/questionpage")}
       />
       
     </div>

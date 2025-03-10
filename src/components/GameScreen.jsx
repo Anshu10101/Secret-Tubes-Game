@@ -25,7 +25,7 @@ const GameScreen = () => {
         src="/play-button.png" // ✅ Remove 'public/'
         alt="Play"
         className="play-button"
-        onClick={() => alert("Play Button Clicked!")}
+        onClick={() => navigate("/questionpage")}
       />
     </div>
   );
