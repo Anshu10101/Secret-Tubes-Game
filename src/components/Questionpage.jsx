@@ -11,6 +11,13 @@ function Questionpage() {
   
   // Track the current ring index being thrown
   const [currentRingIndex, setCurrentRingIndex] = useState(0);
+  
+  // Track feedback message
+  const [feedbackMessage, setFeedbackMessage] = useState("");
+  const [showFeedback, setShowFeedback] = useState(false);
+
+  // Set the correct answer for the current question (you can change this based on your quiz logic)
+  const correctAnswer = true; // Change to true or false based on the correct answer
 
   const handleThrowRings = (selected) => {
     // If answer changes, reset everything
@@ -19,6 +26,14 @@ function Questionpage() {
       setThrownRedRings([]);
       setIsCorrect(selected);
       setCurrentRingIndex(0);
+      setShowFeedback(false);
+      
+      // Check if answer is correct and set feedback
+      if (selected === correctAnswer) {
+        setFeedbackMessage("Great job! You got it right!");
+      } else {
+        setFeedbackMessage("Not quite. Try again!");
+      }
       
       // Add first ring with a slight delay to ensure clean reset
       setTimeout(() => {
@@ -27,6 +42,8 @@ function Questionpage() {
         } else {
           setThrownRedRings([0]);
         }
+        // Show feedback after the first ring is thrown
+        setShowFeedback(true);
       }, 50);
       
       return;
@@ -37,6 +54,7 @@ function Questionpage() {
       setThrownGreenRings([]);
       setThrownRedRings([]);
       setCurrentRingIndex(0);
+      setShowFeedback(false);
       
       // Add first ring with a slight delay
       setTimeout(() => {
@@ -45,6 +63,8 @@ function Questionpage() {
         } else {
           setThrownRedRings([0]);
         }
+        // Show feedback again
+        setShowFeedback(true);
       }, 50);
       
       return;
@@ -65,6 +85,33 @@ function Questionpage() {
     <div className="ques-container">
       <img src="/plant1.png" alt="plant" className="plant1-button" />
       <img src="/plant1.png" alt="plant" className="plant2-button" />
+      
+      {/* Feedback Message */}
+      {showFeedback && (
+        <motion.div 
+          className="feedback-message"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          style={{
+            position: "absolute",
+            top: "10%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            padding: "10px 20px",
+            borderRadius: "20px",
+            backgroundColor: isCorrect === correctAnswer ? "rgba(46, 204, 113, 0.9)" : "rgba(231, 76, 60, 0.9)",
+            color: "white",
+            fontWeight: "bold",
+            fontSize: "1.2rem",
+            zIndex: 100,
+            textAlign: "center",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)"
+          }}
+        >
+          {feedbackMessage}
+        </motion.div>
+      )}
       
       <img
         src="/true.png"
