@@ -7,7 +7,9 @@ function Questionpage() {
   const [thrownGreenRings, setThrownGreenRings] = useState([]);
   const [thrownRedRings, setThrownRedRings] = useState([]);
   const [isCorrect, setIsCorrect] = useState(null);
-  const [clickCount, setClickCount] = useState(0);
+  
+  // Track the current ring index being thrown
+  const [currentRingIndex, setCurrentRingIndex] = useState(0);
 
   const handleThrowRings = (selected) => {
     // If answer changes, reset everything
@@ -15,18 +17,46 @@ function Questionpage() {
       setThrownGreenRings([]);
       setThrownRedRings([]);
       setIsCorrect(selected);
-      setClickCount(0);
+      setCurrentRingIndex(0);
+      
+      // Add first ring with a slight delay to ensure clean reset
+      setTimeout(() => {
+        if (selected === true) {
+          setThrownGreenRings([0]);
+        } else {
+          setThrownRedRings([0]);
+        }
+      }, 50);
+      
+      return;
     }
     
-    // Increment click count (max 3 clicks per choice)
-    const newClickCount = Math.min(clickCount + 1, 3);
-    setClickCount(newClickCount);
+    // If we've already thrown all 3 rings, reset and start over
+    if (currentRingIndex >= 2) {
+      setThrownGreenRings([]);
+      setThrownRedRings([]);
+      setCurrentRingIndex(0);
+      
+      // Add first ring with a slight delay
+      setTimeout(() => {
+        if (selected === true) {
+          setThrownGreenRings([0]);
+        } else {
+          setThrownRedRings([0]);
+        }
+      }, 50);
+      
+      return;
+    }
     
-    // Throw one ring per click based on current click count
+    // Add the next ring
+    const nextRingIndex = currentRingIndex + 1;
+    setCurrentRingIndex(nextRingIndex);
+    
     if (selected === true) {
-      setThrownGreenRings(Array.from({ length: newClickCount }, (_, i) => i));
+      setThrownGreenRings(prev => [...prev, nextRingIndex]);
     } else {
-      setThrownRedRings(Array.from({ length: newClickCount }, (_, i) => i));
+      setThrownRedRings(prev => [...prev, nextRingIndex]);
     }
   };
 
@@ -59,23 +89,21 @@ function Questionpage() {
             initial={{ opacity: 1, x: 0, y: 0 }}
             animate={{
               x: 0,
-              y: -180, // Reduced height so rings don't go too high
+              y: -180,
               opacity: 1,
             }}
             transition={{ duration: 0.5 }}
           />
         ) : (
-          !thrownGreenRings.includes(index) && (
-            <img 
-              key={`green-ring-static-${index}`} 
-              src={`/gr${index + 1}.png`} 
-              alt="Ring" 
-              className={`gr${index + 1}-button`} 
-              style={{ 
-                opacity: isCorrect === true && thrownGreenRings.includes(index) ? 0 : 1 
-              }} 
-            />
-          )
+          <img 
+            key={`green-ring-static-${index}`} 
+            src={`/gr${index + 1}.png`} 
+            alt="Ring" 
+            className={`gr${index + 1}-button`} 
+            style={{ 
+              opacity: thrownGreenRings.includes(index) ? 0 : 1 
+            }} 
+          />
         )
       ))}
       
@@ -90,23 +118,21 @@ function Questionpage() {
             initial={{ opacity: 1, x: 0, y: 0 }}
             animate={{
               x: 0,
-              y: -180, // Reduced height so rings don't go too high
+              y: -180,
               opacity: 1,
             }}
             transition={{ duration: 0.5 }}
           />
         ) : (
-          !thrownRedRings.includes(index) && (
-            <img 
-              key={`red-ring-static-${index}`} 
-              src={`/rr${index + 1}.png`} 
-              alt="Ring" 
-              className={`rr${index + 1}-button`} 
-              style={{ 
-                opacity: isCorrect === false && thrownRedRings.includes(index) ? 0 : 1 
-              }} 
-            />
-          )
+          <img 
+            key={`red-ring-static-${index}`} 
+            src={`/rr${index + 1}.png`} 
+            alt="Ring" 
+            className={`rr${index + 1}-button`} 
+            style={{ 
+              opacity: thrownRedRings.includes(index) ? 0 : 1 
+            }} 
+          />
         )
       ))}
     </div>
