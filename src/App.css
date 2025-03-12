@@ -178,33 +178,84 @@
 
 .true-button {
   width: 10%;
-  height: 8%; /* Changed from fixed height to maintain aspect ratio */
-  min-width: 40px; /* Ensure button isn't too small on larger screens */
+  height: 8%; /* Maintain aspect ratio */
+  min-width: 40px; /* Prevents button from being too small */
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
   position: absolute;
-  bottom: 20px; /* Increased slightly for better visibility */
-  left: 770px; /* Increased slightly for better visibility */
-  z-index: 10; /* Add this to ensure button appears above other elements */
+  bottom: 20px;
+  left: 770px;
+  z-index: 10;
 }
+
+/* Hover Effect */
 .true-button:hover {
   transform: scale(1.1);
 }
 
+/* Click Effect */
+.true-button:active {
+  transform: scale(0.9); /* Slight shrink on press */
+}
+
+/* Animation for multiple clicks */
+.true-button.clicked {
+  animation: clickEffect 0.3s ease-out;
+}
+
+/* Keyframe for Click Animation */
+@keyframes clickEffect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .false-button {
   width: 10%;
-  height: 8%; /* Changed from fixed height to maintain aspect ratio */
-  min-width: 40px; /* Ensure button isn't too small on larger screens */
+  height: 8%; /* Maintain aspect ratio */
+  min-width: 40px; /* Prevents button from being too small */
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
   position: absolute;
-  bottom: 20px; /* Increased slightly for better visibility */
-  right: 770px; /* Increased slightly for better visibility */
-  z-index: 10; /* Add this to ensure button appears above other elements */
+  bottom: 20px;
+  right: 770px;
+  z-index: 10;
 }
+
+/* Hover Effect */
 .false-button:hover {
   transform: scale(1.1);
 }
+
+/* Click Effect */
+.false-button:active {
+  transform: scale(0.9); /* Slight shrink on press */
+}
+
+/* Animation for multiple clicks */
+.false-button.clicked {
+  animation: clickEffect 0.3s ease-out;
+}
+
+/* Keyframe for Click Animation */
+@keyframes clickEffect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 
 /* Green rings css for true button */
 .gr1-button {
@@ -226,7 +277,7 @@
   position: absolute;
   width: 101px;
   height: 55px;
-  left: 830px;
+  left: 790px;
   bottom: 140px;
 
   filter: drop-shadow(0px 4px 8px rgba(4, 15, 79, 0.3));
@@ -270,7 +321,7 @@
   position: absolute;
   width: 101px;
   height: 55px;
-  right: 830px;
+  right: 790px;
   bottom: 140px;
 
   filter: drop-shadow(0px 4px 8px rgba(4, 15, 79, 0.3));
